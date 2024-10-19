@@ -28,21 +28,11 @@
     </header>
 
     <section id="home" class="hero">
-        <!-- Vídeo de fundo -->
-        <video id="hero-video" autoplay muted loop>
-            <source src="assets/video-background.mp4" type="video/mp4">
-            Seu navegador não suporta a exibição de vídeos.
-        </video>
-
-        <!-- Conteúdo da seção hero -->
         <div class="hero-content">
             <h2>Trabalhando no futuro automotivo</h2>
             <p>Explorando o futuro da mobilidade com veículos potentes e design moderno.</p>
             <a href="#carros" class="btn">Nossos Carros</a>
         </div>
-
-        <!-- Botão para pausar/despausar o vídeo -->
-        <button id="video-toggle-btn" class="video-control-btn">Pause</button>
     </section>
 
     <section id="sobre" class="about">
@@ -80,17 +70,39 @@
     </footer>
 
     <script>
-        const video = document.getElementById('hero-video');
-        const toggleButton = document.getElementById('video-toggle-btn');
+        const cursor = document.getElementById('cursor');
+        const hamburger = document.getElementById('hamburger');
+        const sideMenu = document.getElementById('sideMenu');
+        const closeBtn = document.getElementById('closeBtn');
 
-        toggleButton.addEventListener('click', function() {
-            if (video.paused) {
-                video.play();
-                toggleButton.textContent = 'Pause';
-            } else {
-                video.pause();
-                toggleButton.textContent = 'Play';
-            }
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = ${e.pageX - 16}px;
+            cursor.style.top = ${e.pageY - 16}px;
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+        });
+
+        document.querySelectorAll('a, button, input, textarea').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                cursor.style.transform = 'scale(1.5)';
+            });
+            item.addEventListener('mouseout', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+
+        hamburger.addEventListener('click', () => {
+            sideMenu.classList.add('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sideMenu.classList.remove('open');
         });
     </script>
 </body>
